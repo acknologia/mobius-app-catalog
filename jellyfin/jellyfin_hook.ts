@@ -144,6 +144,8 @@ async function authenticate(ctx: HookContext, username: string, password: string
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      // Jellyfin 12 dropped X-Emby-Authorization; 10.8+ reads Authorization
+      Authorization: CLIENT_HEADER,
       "X-Emby-Authorization": CLIENT_HEADER,
     },
     body: JSON.stringify({ Username: username, Pw: password }),
